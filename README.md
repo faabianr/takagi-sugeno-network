@@ -1,0 +1,1 @@
+# Takagi Sugeno Network Sample
