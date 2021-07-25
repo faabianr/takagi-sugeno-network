@@ -6,6 +6,7 @@ import org.knowm.xchart.XYChart;
 import org.knowm.xchart.XYChartBuilder;
 import uag.mcc.ai.fuzzy.takagi.model.ChartData;
 import uag.mcc.ai.fuzzy.takagi.model.ChartStyleConfig;
+import uag.mcc.ai.fuzzy.takagi.model.Curve;
 
 import java.util.Arrays;
 
@@ -13,6 +14,17 @@ import java.util.Arrays;
 public class ChartService {
 
     private SwingWrapper<XYChart> swingWrapper;
+
+    public void displayCharts(ChartData tempMfChartData, ChartData tempChartData) {
+        if (swingWrapper == null) {
+
+            XYChart tempMfChart = buildChart(tempMfChartData);
+            XYChart tempChart = buildChart(tempChartData);
+
+            swingWrapper = new SwingWrapper<>(Arrays.asList(tempMfChart, tempChart));
+            swingWrapper.displayChartMatrix();
+        }
+    }
 
     private void applyChartStyle(XYChart chart, ChartStyleConfig styleConfig) {
         chart.getStyler().setMarkerSize(styleConfig.getMarkerSize());
@@ -36,20 +48,13 @@ public class ChartService {
                 .yAxisTitle(chartData.getYAxisTitle())
                 .build();
 
-        chart.addSeries(chartData.getSeriesName(), chartData.getXValues(), chartData.getYValues(), null);
+        for (Curve curve : chartData.getCurves()) {
+            chart.addSeries(curve.getSeriesName(), curve.getXValues(), curve.getYValues(), null);
+        }
+
         applyChartStyle(chart, chartData.getStyleConfig());
 
         return chart;
-    }
-
-    public void displayCharts(ChartData rainfallChartData, ChartData tempChartData) {
-        if (swingWrapper == null) {
-            XYChart rainfallChart = buildChart(rainfallChartData);
-            XYChart tempChart = buildChart(tempChartData);
-
-            swingWrapper = new SwingWrapper<>(Arrays.asList(rainfallChart, tempChart));
-            swingWrapper.displayChartMatrix();
-        }
     }
 
 }

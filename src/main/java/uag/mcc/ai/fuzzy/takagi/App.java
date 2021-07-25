@@ -1,14 +1,11 @@
 package uag.mcc.ai.fuzzy.takagi;
 
-import uag.mcc.ai.fuzzy.takagi.model.CurveSynthesisConfig;
 import uag.mcc.ai.fuzzy.takagi.services.CurveSynthesis;
 
 public class App {
 
     public static void main(String[] args) {
-        CurveSynthesis curveSynthesis = new CurveSynthesis();
-
-        CurveSynthesisConfig config = CurveSynthesisConfig.builder()
+        CurveSynthesis curveSynthesis = CurveSynthesis.builder()
                 .m1(0)
                 .de1(2.5)
                 .m2(6)
@@ -23,8 +20,7 @@ public class App {
                 .q3(0)
                 .build();
 
-        curveSynthesis.execute(config);
-
+        curveSynthesis.execute();
     }
 
 }
