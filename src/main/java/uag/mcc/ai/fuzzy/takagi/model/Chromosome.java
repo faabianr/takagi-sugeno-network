@@ -26,6 +26,7 @@ public class Chromosome {
     private final double q2;
     private final double q3;
 
+    private Curve referenceCurve;
     private Curve curve;
     private Curve mf1Curve;
     private Curve mf2Curve;

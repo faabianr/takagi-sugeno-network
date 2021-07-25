@@ -13,6 +13,7 @@ public class ChartData {
     public static final String Y = "y";
 
     private List<Curve> curves;
+    private Curve referenceCurve;
     private int index;
     private String title;
     private String xAxisTitle;
