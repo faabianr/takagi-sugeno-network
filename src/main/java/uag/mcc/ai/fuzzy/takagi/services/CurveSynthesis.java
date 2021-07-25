@@ -79,8 +79,26 @@ public class CurveSynthesis {
                 .curves(Collections.singletonList(tempCurve))
                 .build();
 
+        ChartData rainMfChartData = ChartData.builder()
+                .styleConfig(ChartStyleConfig.builder().build())
+                .index(0)
+                .title("Rainfall Membership Functions")
+                .xAxisTitle(ChartData.X)
+                .yAxisTitle(ChartData.Y)
+                .curves(Arrays.asList(tempMf1Curve, tempMf2Curve, tempMf3Curve))
+                .build();
 
-        chartService.displayCharts(tempMfChartData, tempChartData);
+        ChartData rainChartData = ChartData.builder()
+                .styleConfig(ChartStyleConfig.builder().build())
+                .index(0)
+                .title("Rainfall")
+                .xAxisTitle("Month")
+                .yAxisTitle("Precipitacion")
+                .curves(Collections.singletonList(tempCurve))
+                .build();
+
+
+        chartService.displayCharts(tempMfChartData, tempChartData, rainMfChartData, rainChartData);
 
     }
 

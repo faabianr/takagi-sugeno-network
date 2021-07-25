@@ -15,13 +15,17 @@ public class ChartService {
 
     private SwingWrapper<XYChart> swingWrapper;
 
-    public void displayCharts(ChartData tempMfChartData, ChartData tempChartData) {
+    public void displayCharts(ChartData tempMfChartData, ChartData tempChartData, ChartData rainMfChartData, ChartData rainChartData) {
         if (swingWrapper == null) {
 
             XYChart tempMfChart = buildChart(tempMfChartData);
             XYChart tempChart = buildChart(tempChartData);
 
-            swingWrapper = new SwingWrapper<>(Arrays.asList(tempMfChart, tempChart));
+            XYChart rainMfChart = buildChart(rainMfChartData);
+            XYChart rainChart = buildChart(rainChartData);
+
+            swingWrapper = new SwingWrapper<>(Arrays.asList(tempMfChart, tempChart, rainMfChart, rainChart));
+            swingWrapper.setTitle("Curve Synthesis - Takagi Sugeno Network");
             swingWrapper.displayChartMatrix();
         }
     }
